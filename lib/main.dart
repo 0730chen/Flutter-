@@ -174,54 +174,61 @@ class _DemoPageState extends State<DemoPage> {
   }
 }
 //无状态的Widget控件
-// class DEMOWidget extends StatelessWidget {
-//   final String text;
-//     DEMOWidget(this.text);
-//   @override
-//   Widget build(BuildContext context) {
+ class DEMOWidget extends StatelessWidget {
+   final String text;
+     DEMOWidget(this.text);
+   @override
+   Widget build(BuildContext context) {
     
-//     return Container(
-//         color: Colors.white,
-//         child: Text(text ?? '这是无状态的Demo'),      
-//     );
-//   }
-// }
+     return Container(
+         color: Colors.white,
+         child: Text(text ?? '这是无状态的Demo'),
+     );
+   }
+ }
 //设置状态的控件
-// class DemoStateWidget extends StatefulWidget {
-//   final String text;
-//   DemoStateWidget(this.text);
-//   @override
-//   _DemoStateWidgetState createState() => _DemoStateWidgetState();
-// }
+ class DemoStateWidget extends StatefulWidget {
+   final String text;
+   DemoStateWidget(this.text);
+   @override
+   _DemoStateWidgetState createState() => _DemoStateWidgetState("我是demo");
+ }
 
-// class _DemoStateWidgetState extends State<DemoStateWidget> {
-//   String text;
-//   _DemoStateWidgetState(this.text);
-//   @override
-//   void initState() {
-//     //初始化state
-//     super.initState();
-//     ///定时2秒
-//     new Future.delayed(const Duration(seconds: 1),() {
-//        setState(() {
-//         text = '数值发生变化';
-//        });
-//     });
-//   }
-//   @override
-//   void dispose() {
-//     ///销毁方法
-//     super.dispose();
-//   }
-//   @override
-//   void didChageDependencies() {
-//     ///在initState之后调用Called when a dependency of this [State] object changes.
-//     super.didChangeDependencies();
-//   }
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       child: Text(text ?? "这是有状态的的demo"),
-//     );
-//   }
+ class _DemoStateWidgetState extends State<DemoStateWidget> {
+   String text;
+
+   _DemoStateWidgetState(this.text);
+
+   @override
+   void initState() {
+     //初始化state
+     super.initState();
+
+     ///定时2秒
+     new Future.delayed(const Duration(seconds: 1), () {
+       setState(() {
+         text = '数值发生变化';
+       });
+     });
+   }
+
+   @override
+   void dispose() {
+     ///销毁方法
+     super.dispose();
+   }
+
+   @override
+   void didChageDependencies() {
+     ///在initState之后调用Called when a dependency of this [State] object changes.
+     super.didChangeDependencies();
+   }
+
+   @override
+   Widget build(BuildContext context) {
+     return Container(
+       child: Text(text ?? "这是有状态的的demo"),
+     );
+   }
+ }
 // 

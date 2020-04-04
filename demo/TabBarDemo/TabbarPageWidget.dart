@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:demo1/TabBarFirstPage.dart';
-import 'package:demo1/TabBarSecondPage.dart';
-import 'package:demo1/TabBarThirdPage.dart';
-import 'package:demo1/TabBarFourPage.dart';
-import 'package:demo1/TabBarWidget.dart';
+
+import 'TabBarFirstPage.dart';
+import 'TabBarFourPage.dart';
+import 'TabBarSecondPage.dart';
+import 'TabBarThirdPage.dart';
+import 'TabBarWidget.dart';
 
 class TabBarPageWidget extends StatefulWidget {
   @override
