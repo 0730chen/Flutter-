@@ -23,7 +23,6 @@ class DemoApp extends StatelessWidget {
         title: '摸鱼池塘',
         theme: new ThemeData(
           brightness: Brightness.light,
-          primaryColor: Colors.lightGreen,
           accentColor: Colors.cyan,
 
         ),
@@ -45,14 +44,29 @@ class DemoApp extends StatelessWidget {
               borderRadius:
                 const BorderRadius.all(const Radius.circular(8.0))
             ),
-            child: Text(
-              'Flutter',
-              textAlign: TextAlign.center,
-              style:new TextStyle(fontSize: 28.0,color: const Color(0xffff0000))
+//            child: Text(
+//              'Flutter',
+//              textAlign: TextAlign.center,
+//              style:new TextStyle(fontSize: 28.0,color: const Color(0xffff0000))
+//            ),
+            child: RaisedButton(
+              onPressed: (){
+                Navigator.pushNamed(context, '/first');
+              },
+              child: Text(
+                '跳转第一页',
+                style: TextStyle(fontSize: 28.0),
+              ),
             ),
           ),
         )
-        )
+        ),
+        routes:{
+          '/first':(BuildContext context) => FirstPage(),
+          '/seconed':(BuildContext context) =>secondPage(),
+          '/third':(BuildContext context)=> thirdPage()
+        },
+      initialRoute: './first',
 
 //        home: DemoPage(),
     );
@@ -198,3 +212,4 @@ class _DemoPageState extends State<DemoPage> {
     );
   }
 }
+
