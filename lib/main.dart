@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/rendering.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 //在外面写好模板，进行引入，实现按钮切换页面
 import './first.dart';
 import './second.dart';
 import './third.dart';
-
 
 void main() {
   debugPaintSizeEnabled = true; //2.第二步
@@ -18,10 +18,48 @@ class DemoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(home: DemoPage());
+    debugPaintSizeEnabled = true;
+    return new MaterialApp(
+        title: '摸鱼池塘',
+        theme: new ThemeData(
+          brightness: Brightness.light,
+          primaryColor: Colors.lightGreen,
+          accentColor: Colors.cyan,
+
+        ),
+        home:new Scaffold(
+          appBar: AppBar(
+            title:Text('容器组件')
+          ),
+        body:Center(
+          child: Container(
+            width: 200.0,
+            height: 200.0,
+            //装饰效果
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: new Border.all(
+                color: Colors.black,
+                width: 10.0
+              ),
+              borderRadius:
+                const BorderRadius.all(const Radius.circular(8.0))
+            ),
+            child: Text(
+              'Flutter',
+              textAlign: TextAlign.center,
+              style:new TextStyle(fontSize: 28.0,color: const Color(0xffff0000))
+            ),
+          ),
+        )
+        )
+
+//        home: DemoPage(),
+    );
   }
 }
 
+//页面中的每一个卡片
 class MyAppbar extends StatelessWidget {
   MyAppbar({this.title});
 
@@ -29,7 +67,6 @@ class MyAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var GSYColors;
     return new Container(
       ///卡片包装
       child: new Card(
@@ -47,13 +84,11 @@ class MyAppbar extends StatelessWidget {
                 ///文本描述
                 new Container(
                     child: new Text(
-                      '这是一点描述',
+                      '${this.title}',
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 14.0,
                       ),
-
-                      ///最长三行，超过省略
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -136,18 +171,30 @@ class _DemoPageState extends State<DemoPage> {
         appBar: new AppBar(
           //这个标题是一个widget
           title: new Text(
-            "我的第一个App",
+            'Atom摸鱼',
             style: TextStyle(
-              color: Colors.black12,
+              color: Colors.black,
               fontSize: 14.0,
             ),
           ),
         ),
-        body: new ListView.builder(
-          itemBuilder: (context, index) {
-            return MyAppbar();
-          },
-          itemCount: 5,
-        ));
+//        body: new ListView.builder(
+//          itemBuilder: (context, index) {
+//            print(context);
+//            print(index);
+//            return MyAppbar();
+//          },
+//          itemCount: 5,
+//        )
+    body:new Center(
+      child: new RaisedButton(onPressed: (){
+        const url = 'https://www.baidu.com';
+        print('点击后打开百度');
+        launch(url);
+      },
+        child: new Text('打开百度'),
+      ),
+    )
+    );
   }
 }
