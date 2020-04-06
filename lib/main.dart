@@ -10,7 +10,21 @@ import './third.dart';
 
 void main() {
   debugPaintSizeEnabled = true; //2.第二步
-  runApp(DemoApp());
+  runApp(MyApp());
+}
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Flutter Demo',
+        home: DemoApp(),
+      routes: {
+        '/first':(BuildContext context) => new FirstPage(),
+        '/seconed':(BuildContext context) => new secondPage(),
+        '/third':(BuildContext context)=> new thirdPage()
+      },
+    );
+  }
 }
 
 class DemoApp extends StatelessWidget {
@@ -19,56 +33,16 @@ class DemoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     debugPaintSizeEnabled = true;
-    return new MaterialApp(
-        title: '摸鱼池塘',
-        theme: new ThemeData(
-          brightness: Brightness.light,
-          accentColor: Colors.cyan,
-
-        ),
-        home:new Scaffold(
-          appBar: AppBar(
-            title:Text('容器组件')
-          ),
-        body:Center(
-          child: Container(
-            width: 200.0,
-            height: 200.0,
-            //装饰效果
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: new Border.all(
-                color: Colors.black,
-                width: 10.0
-              ),
-              borderRadius:
-                const BorderRadius.all(const Radius.circular(8.0))
-            ),
-//            child: Text(
-//              'Flutter',
-//              textAlign: TextAlign.center,
-//              style:new TextStyle(fontSize: 28.0,color: const Color(0xffff0000))
-//            ),
-            child: RaisedButton(
-              onPressed: (){
-                Navigator.pushNamed(context, '/first');
-              },
-              child: Text(
-                '跳转第一页',
-                style: TextStyle(fontSize: 28.0),
-              ),
-            ),
-          ),
-        )
-        ),
-        routes:{
-          '/first':(BuildContext context) => FirstPage(),
-          '/seconed':(BuildContext context) =>secondPage(),
-          '/third':(BuildContext context)=> thirdPage()
-        },
-      initialRoute: './first',
-
-//        home: DemoPage(),
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('TestProject'),
+      ),
+      body: new Center(
+          child: new FlatButton(
+              child: const Text('Go to Settings'),
+              onPressed: () => Navigator.of(context).pushNamed('/first')
+          )
+      ),
     );
   }
 }
