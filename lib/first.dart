@@ -15,7 +15,10 @@ class _FirstPageState extends State<FirstPage> {
         title: new Text("界面1"),
       ),
       body: new Center(
-        child: new Text("第一个界面"),
+        child: new FlatButton(
+            onPressed:() => Navigator.of(context).pushNamed('/seconed'),
+            child: new Text('点击跳转到第二页')
+        )
       )
     );
   }

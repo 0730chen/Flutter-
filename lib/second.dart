@@ -13,9 +13,9 @@ class _secondPageState extends State<secondPage> {
         title: new Text("界面二"),
       ),
       body: new Center(
-        child: new Text("第二个界面"),
-      ),
+          child: new FlatButton(
+              onPressed: () => Navigator.of(context).pushNamed('/third'),
+              child: new Text("跳转到第三页"))),
     );
-
   }
 }
