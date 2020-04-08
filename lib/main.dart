@@ -17,7 +17,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter Demo',
-        home: DemoApp(),
+        home: Scaffold(
+          body:DemoApp()
+        ),
       routes: {
         '/first':(BuildContext context) => new FirstPage(),
         '/seconed':(BuildContext context) => new secondPage(),
@@ -26,24 +28,46 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-class DemoApp extends StatelessWidget {
+class DemoApp extends StatefulWidget {
   DemoApp({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    debugPaintSizeEnabled = true;
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('TestProject'),
+  _DemoAppState createState() => _DemoAppState();
+}
+
+class _DemoAppState extends State<DemoApp>{
+  int _selectedIndex = 1;
+  final _widgetOption=[
+    Text('Index0:信息'),
+    Text('Index1:通讯录'),
+    Text('Index2:发现'),
+  ];
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('底部导航示例'),
       ),
-      body: new Center(
-          child: new FlatButton(
-              child: const Text('Go to Settings'),
-              onPressed: () => Navigator.of(context).pushNamed('/first')
-          )
+      body: Center(
+        child: _widgetOption.elementAt(_selectedIndex)
       ),
+      bottomNavigationBar: BottomNavigationBar(
+          items:<BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon:Icon(Icons.chat),title: Text('信息')),
+            BottomNavigationBarItem(icon:Icon(Icons.contacts),title: Text('通讯')),
+            BottomNavigationBarItem(icon:Icon(Icons.account_circle),title: Text('发现')),
+
+          ],
+        currentIndex: _selectedIndex,
+        fixedColor: Colors.deepOrangeAccent,
+        onTap: _onItemTapped,
+      )
     );
+  }
+  void _onItemTapped(int index){
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 }
 
