@@ -38,25 +38,34 @@ class DemoApp extends StatefulWidget {
 class _DemoAppState extends State<DemoApp>{
   int _selectedIndex = 1;
   final _widgetOption=[
-    Text('Index0:信息'),
-    Text('Index1:通讯录'),
-    Text('Index2:发现'),
+    Text('记账页面'),
+    Text('标签页面'),
+    Text('编辑页面'),
   ];
   @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text('底部导航示例'),
+        title: new Text(
+          '饭团记账',
+          textAlign: TextAlign.center,
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            tooltip: '搜索',
+            onPressed: ()=>{},
+          )
+        ],
       ),
       body: Center(
         child: _widgetOption.elementAt(_selectedIndex)
       ),
       bottomNavigationBar: BottomNavigationBar(
           items:<BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon:Icon(Icons.chat),title: Text('信息')),
-            BottomNavigationBarItem(icon:Icon(Icons.contacts),title: Text('通讯')),
-            BottomNavigationBarItem(icon:Icon(Icons.account_circle),title: Text('发现')),
-
+            BottomNavigationBarItem(icon:Icon(Icons.payment),title: Text('记账')),
+            BottomNavigationBarItem(icon:Icon(Icons.border_all),title: Text('标签类型')),
+            BottomNavigationBarItem(icon:Icon(Icons.trending_up),title: Text('统计')),
           ],
         currentIndex: _selectedIndex,
         fixedColor: Colors.deepOrangeAccent,
